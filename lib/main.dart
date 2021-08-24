@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shoe_app/pages/cart_page.dart';
+import 'package:shoe_app/pages/checkout_page.dart';
+import 'package:shoe_app/pages/checkout_success.dart';
 import 'package:shoe_app/pages/detail_chat_page.dart';
 import 'package:shoe_app/pages/edit_profile_page.dart';
 import 'package:shoe_app/pages/home/main_page.dart';
+import 'package:shoe_app/pages/product_page.dart';
 import 'package:shoe_app/pages/sign_in_page.dart';
 import 'package:shoe_app/pages/sign_up_page.dart';
 import 'package:shoe_app/pages/splash_page.dart';
@@ -24,7 +28,11 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => SignUpPage(),
         '/home': (context) => MainPage(),
         '/detail-chat': (context) => DetailChatPage(),
-        '/edit-profile': (context) => EditProfilePage()
+        '/edit-profile': (context) => EditProfilePage(),
+        '/product': (context) => ProductPage(),
+        '/cart': (context) => CartPage(),
+        '/checkout': (context) => CheckoutPage(),
+        '/checkout-success': (context) => CheckoutSuccessPage(),
       },
     );
   }
