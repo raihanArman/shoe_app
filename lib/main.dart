@@ -12,6 +12,7 @@ import 'package:shoe_app/pages/sign_in_page.dart';
 import 'package:shoe_app/pages/sign_up_page.dart';
 import 'package:shoe_app/pages/splash_page.dart';
 import 'package:shoe_app/providers/auth_provider.dart';
+import 'package:shoe_app/providers/product_provide.dart';
 import 'package:shoe_app/theme.dart';
 
 void main() {
@@ -23,7 +24,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => AuthProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
+        ChangeNotifierProvider(create: (context) => ProductProvider())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_app/models/user_model.dart';
 import 'package:shoe_app/pages/widgets/product_cart.dart';
 import 'package:shoe_app/pages/widgets/product_tile.dart';
+import 'package:shoe_app/providers/auth_provider.dart';
+import 'package:shoe_app/providers/product_provide.dart';
 import 'package:shoe_app/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,6 +12,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+
     Widget header() {
       return Container(
         margin: EdgeInsets.only(
@@ -20,12 +28,12 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello Andi Raihan Arman',
+                    'Hello ${user.name}',
                     style: primaryTextStyle.copyWith(
                         fontSize: 24, fontWeight: semiBold),
                   ),
                   Text(
-                    '@alexmantap',
+                    '@${user.username}',
                     style: subtitleTextStyle.copyWith(fontSize: 16),
                   )
                 ],
@@ -37,7 +45,7 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      image: AssetImage('assets/image_profile.png'))),
+                      image: NetworkImage("${user.profilePhotoUrl}"))),
             )
           ],
         ),
@@ -144,9 +152,9 @@ class HomePage extends StatelessWidget {
             children: [
               SizedBox(width: defaultMargin),
               Row(
-                children: [
-                  ProductCart(),
-                ],
+                children: productProvider.products
+                    .map((product) => ProductCart(product))
+                    .toList(),
               )
             ],
           ),

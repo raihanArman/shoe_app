@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoe_app/models/user_model.dart';
+import 'package:shoe_app/providers/auth_provider.dart';
 import 'package:shoe_app/theme.dart';
 
 class EditProfilePage extends StatelessWidget {
@@ -6,6 +9,9 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
     Widget nameinput() {
       return Container(
         margin: EdgeInsets.only(top: 30),
@@ -16,7 +22,7 @@ class EditProfilePage extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                  hintText: 'Alex Rudiart',
+                  hintText: '${user.name}',
                   hintStyle: primaryTextStyle,
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: subtitleColor))),
@@ -36,7 +42,7 @@ class EditProfilePage extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                  hintText: 'Alex Rudiart',
+                  hintText: '${user.username}',
                   hintStyle: primaryTextStyle,
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: subtitleColor))),
@@ -56,7 +62,7 @@ class EditProfilePage extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                  hintText: 'Alex Rudiart',
+                  hintText: '${user.email}',
                   hintStyle: primaryTextStyle,
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: subtitleColor))),
@@ -80,7 +86,8 @@ class EditProfilePage extends StatelessWidget {
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        image: AssetImage('assets/image_profile.png'))),
+                        fit: BoxFit.fill,
+                        image: NetworkImage('${user.profilePhotoUrl}'))),
               ),
               nameinput(),
               usernameInput(),

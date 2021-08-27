@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shoe_app/models/product_model.dart';
 import 'package:shoe_app/theme.dart';
 
 class ProductCart extends StatelessWidget {
-  const ProductCart({Key? key}) : super(key: key);
+  final ProductModel product;
+  ProductCart(this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,8 @@ class ProductCart extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Image.asset(
-              'assets/image_shoes.png',
+            Image.network(
+              product.galleries![0].url!,
               width: 215,
               height: 150,
               fit: BoxFit.cover,
